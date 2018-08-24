@@ -3,6 +3,8 @@ node_js:
 - '8'
 notifications:
   email: false
+before_script:
+- yarn build
 deploy:
   provider: npm
   email: "terma95@gmail.com"
