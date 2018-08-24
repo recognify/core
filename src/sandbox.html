@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recognify sandbox</title>
+</head>
+<body>
+<div class="wrapper">
+    <video id="video"></video>
+    <canvas id="canvas"></canvas>
+</div>
+<style>
+    .wrapper {
+        position: relative;
+        display: inline-block;
+    }
+    #canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    #video {
+        vertical-align: top;
+    }
+</style>
+<script>
+    /* global recognify */
+    onload = function() {
+        let tracker = new recognify.ObjectTracker('eye')
+        let canvas = document.getElementById('canvas')
+        /** @type {CanvasRenderingContext2D} */
+        let context = canvas.getContext('2d')
+        let time = new Date()
+
+        tracker.on('track', ({data}) => {
+            let newTime = new Date()
+            console.log(newTime - time)
+            time = newTime
+            let r = canvas.getBoundingClientRect()
+            canvas.width = r.width
+            canvas.height = r.height
+            for (let rect of data) {
+                context.strokeStyle = 'red'
+                context.strokeRect(rect.x, rect.y, rect.width, rect.height)
+            }
+        })
+        recognify.track('#video', tracker, {camera: true})
+    }
+</script>
+</body>
+</html>
