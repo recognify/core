@@ -1,13 +1,16 @@
 language: node_js
 node_js:
-- '8'
+- '9'
 notifications:
   email: false
-before_script:
+script:
 - yarn build
+cache: yarn
 deploy:
   provider: npm
   email: "terma95@gmail.com"
   api_key:
     secure: RS3+rLSJDuEv7Almio5pgsIuNRm0fvDj21fMxmI/xH4xGihWooS6RBCUUtKcZty/yEnZZ8gmcL5H05zZUs0MPJZN2K9FkC1Te4Q/nsz6TbN7zx8RxXMWiDGHDlvH2T27kE0LdbPEeJ/6TwL1HpMMxhYlvi7oc2BOl2EaCC0v92PBtxEFB+CLD0XGSESaCNTVVJv0YnKFFNsGTdCo7hdHTVuD93CjOobTlgUm5WscvLqn1iBC2DLrAEo2Yrn6AKf9vv8UVLaXzNmWwCX5lgzO2hOMNY9hgsfOBED2R4D7W4wWnWwqQGK88tJ8c1yZSya/neAl27M5qjvOdsbjPOvhmkSBIQBzPUtW5A2qAFOaxueCHIhLtPqIXzIDF3ZjceVYl80sqp0jsWAbUtZk5d6vAc0J/grqzsUxjR1kzg8AXeWm+KCbqoSDiNtUwLAihz5s8eEzE412Xf1jh+d9JU0udWeyE8iWD68EMx7ZuxfB8eIjFRmoqll/bMGwYq6JHz+GtzNb+aZ5VZ9hZirKrf1ewEYp/bfwmvnetM9DTF4PDygJVgkJKInI7A8pFlPrgBFGsFQN/9abdIzmZdfUj3Dq/OiYOgG50zxjnUK8aTzIDr11DXvCS2HE+r9gcZ5T7JBfwdR04klXkqLiSrfx3QS8Z9Im3lTUBBcWeoNNkwLLgW8=
   skip_cleanup: true
+  on:
+    branch: master
